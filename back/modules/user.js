@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 
+/* Create user model */
 /* If we want to indicate that there is a type and it is required to be filled
 in, then we pass the object 
 
@@ -25,4 +26,4 @@ const UserScheme = new mongoose.Schema({
     timestamps:true,
 },)
 
-export default mongoose.model('User',UserScheme)
+export default mongoose.model('user',UserScheme)
