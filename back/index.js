@@ -3,10 +3,12 @@ import express, { request } from 'express';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt'
 import mongoose from 'mongoose';
+
 import {registerValidaation} from './validation/auth.js'
 import { validationResult } from "express-validator";
-import UserModel from './modules/user.js';
 
+import UserModel from './modules/user.js';
+import checkAuth from './utils/checkAuth.js';
 /* connection to monogodb */
 mongoose.connect(
     'mongodb+srv://admin:admin@cluster0.2re14nq.mongodb.net/blog'
@@ -64,7 +66,6 @@ app.post('/auth/login', async (req, res) => {
   }
 })
 
-
 /* get Login and password through json  */
 app.post('/auth/register', registerValidaation, async (req, res) => {
  try{
@@ -112,6 +113,29 @@ const {passwordHash, ...userData} = user._doc
   })
  }
 
+})
+
+/* Function middleware checkAuth */
+app.get('/auth/me',checkAuth,  async (req, res) =>{
+  try{
+    const user = await UserModel.findById(req.userId);
+    if(!user){
+      return res.status(404).json({
+        message:"no user",
+      })
+    }
+
+
+   const {passwordHash, ...userData} = user._doc
+
+  res.json(userData)
+
+  }catch (err){
+    console.log(err);
+    res.status(500).json({
+      message:"no acccess",
+    })
+  }
 })
 
 /* Connection to port */
