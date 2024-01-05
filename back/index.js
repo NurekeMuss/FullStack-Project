@@ -1,4 +1,4 @@
-/* using insomnia for CRUD*/
+/* using insomnia for request*/
 import express, { request } from 'express';
 import mongoose from 'mongoose';
 
@@ -28,8 +28,8 @@ app.post('/auth/register', registerValidaation, UserController.register)
 app.get('/auth/me',checkAuth, UserController.getMe)
 
 
-//app.get('/posts', PostController.getAll)
-//app.get('/posts/:id', PostController.getOne)
+app.get('/posts', PostController.getAll)
+app.get('/posts/:id', PostController.getOne)
 app.post('/posts',checkAuth,postCreateValidaation, PostController.create)
 //app.delete('/posts', PostController.remove)
 //app.patch('/posts', PostController.update)

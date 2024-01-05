@@ -27,3 +27,5 @@ const UserScheme = new mongoose.Schema({
 },)
 
 export default mongoose.model('user',UserScheme)
+
+

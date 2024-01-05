@@ -26,7 +26,7 @@ const PostScheme = new mongoose.Schema({
     },
     user:{
         type: mongoose.Schema.Types.Object, /* по айди */
-        ref:'User', /* ссылается */
+        ref:'user', /* ссылается */
         required: true,
     },
 
