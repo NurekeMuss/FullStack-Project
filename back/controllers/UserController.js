@@ -1,15 +1,11 @@
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt'
-import { validationResult } from "express-validator";
+
 
 import UserModel from '../modules/user.js';
 export const register = async (req, res) => {
     try{
-     const errors = validationResult(req) // req all errors 
-     
-     if(!errors.isEmpty()){ //checking validation
-       return res.status(400).json(errors.array())
-     }  
+   
      
    /* Шифрование пароля  */
      const password = req.body.password;
