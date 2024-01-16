@@ -18,7 +18,7 @@ export const getLastTags = async (req,res) => {
             message: "Error"
         })
         }
-    }
+}
 export const getAll = async (req,res) => {
     try{
         const posts = await PostModel.find().populate('user').exec()
@@ -61,7 +61,7 @@ export const getOne = async (req,res) => {
 
             res.json(doc)
         },
-      )
+      ).populate()
     }catch(err){
         console.log(err)
         return res.status(500).json({
@@ -103,9 +103,6 @@ export const remove = async (req, res) => {
     }
 }
    
-
-
-
 export const create = async (req, res) =>{
     try{
         const doc = new PostModel({

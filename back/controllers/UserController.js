@@ -3,10 +3,10 @@ import bcrypt from 'bcrypt'
 
 
 import UserModel from '../modules/user.js';
+
+
 export const register = async (req, res) => {
     try{
-   
-     
    /* Шифрование пароля  */
      const password = req.body.password;
      const salt = await bcrypt.genSalt(10);//Алгоритм шифрование 
